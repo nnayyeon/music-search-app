@@ -3,7 +3,8 @@ import useStore from "./store/store";
 function App() {
   const { artists, keyword, setKeyword, fetchArtists } = useStore();
 
-  const handleSearch = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     await fetchArtists();
   };
 
@@ -11,32 +12,32 @@ function App() {
     <div className="min-h-screen bg-gray-100 p-10">
       <div className="mx-auto max-w-3xl rounded-xl bg-white p-8 shadow">
         <h2 className="mb-6 text-center text-3xl font-bold">
-          음악 아티스트 검색
+          Music Artist Search
         </h2>
 
-        <div className="mb-8 flex gap-3">
+        <form onSubmit={handleSubmit} className="mb-8 flex gap-3">
           <input
             type="text"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            placeholder="가수 이름 검색"
+            placeholder="Search artist name"
             className="flex-1 rounded-xl border border-gray-300 px-4 py-3 text-lg"
           />
 
           <button
-            onClick={handleSearch}
-            className="rounded-xl bg-black px-6 py-3 text-lg font-bold text-white"
+            type="submit"
+            className="rounded-xl bg-slate-500 px-6 py-3 text-lg font-bold text-white hover:bg-slate-600"
           >
-            검색
+            Search
           </button>
-        </div>
+        </form>
 
         {artists.map((artist) => (
           <div
             key={artist.mbid || artist.name}
             className="mb-4 flex items-center gap-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
           >
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-black text-2xl font-bold text-white">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gray-400 text-2xl font-bold text-white">
               {artist.name.charAt(0)}
             </div>
 
@@ -53,7 +54,7 @@ function App() {
                 rel="noreferrer"
                 className="mt-2 inline-block text-sm font-semibold text-blue-600"
               >
-                Last.fm에서 보기 →
+                View on Last.fm →
               </a>
             </div>
           </div>
