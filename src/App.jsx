@@ -15,7 +15,10 @@ function App() {
           Music Artist Search
         </h2>
 
-        <form onSubmit={handleSubmit} className="mb-8 flex gap-3">
+        <form
+          onSubmit={handleSubmit}
+          className="mb-8 flex flex-col gap-3 sm:flex-row"
+        >
           <input
             type="text"
             value={keyword}
@@ -26,7 +29,7 @@ function App() {
 
           <button
             type="submit"
-            className="rounded-xl bg-slate-500 px-6 py-3 text-lg font-bold text-white hover:bg-slate-600"
+            className="w-full rounded-xl bg-slate-500 px-6 py-3 text-lg font-bold text-white hover:bg-slate-600 sm:w-auto"
           >
             Search
           </button>
